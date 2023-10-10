@@ -28,14 +28,14 @@ function getPlots(id) {
 
     // Extracts and process the necessary data for plotting
     let sampleValues = selectedSample.sample_values.slice(0, 10).reverse();
-    let otuID = selectedSample.otu_ids.slice(0, 10).map(id => `OTU ${id}`).reverse();
-    let labels = selectedSample.otu_labels.slice(0, 10);
+    let otu_ids  = selectedSample.otu_ids.slice(0, 10).map(id => `OTU ${id}`).reverse();
+    let otu_labels = selectedSample.otu_labels.slice(0, 10);
 
     // Bar chart trace
     let trace = {
         x: sampleValues,
-        y: otuID,
-        text: labels,
+        y: otu_ids ,
+        text: otu_labels,
         marker: {
             color: 'blue'
         },
@@ -63,7 +63,7 @@ function getPlots(id) {
     Plotly.newPlot("bar", data, layout);
 
     // Bubble chart trace
-    let trace1 = {
+    let trace2 = {
         x: selectedSample.otu_ids,
         y: selectedSample.sample_values,
         mode: "markers",
@@ -81,10 +81,10 @@ function getPlots(id) {
         width: 1000
     };
 
-    let data1 = [trace1];
+    let data2 = [trace2];
 
     // Bubble plot
-    Plotly.newPlot("bubble", data1, layout_2);
+    Plotly.newPlot("bubble", data2, layout_2);
 }
 
 // Function to display demographic information
